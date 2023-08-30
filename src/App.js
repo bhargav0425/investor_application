@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import { AppBar, Tabs, Tab, Container, Typography, Box, useScrollTrigger } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import ImageTextComponent from './ImageTextComponent';
 
 function App() {
   const [value, setValue] = useState(0);
@@ -20,6 +28,50 @@ function App() {
     disableHysteresis: true,
     threshold: 100,
   });
+
+  const columns = [
+    {
+      width: 200,
+      label: 'Dessert',
+      dataKey: 'dessert',
+    },
+    {
+      width: 120,
+      label: 'Calories\u00A0(g)',
+      dataKey: 'calories',
+      numeric: true,
+    },
+    {
+      width: 120,
+      label: 'Fat\u00A0(g)',
+      dataKey: 'fat',
+      numeric: true,
+    },
+    {
+      width: 120,
+      label: 'Carbs\u00A0(g)',
+      dataKey: 'carbs',
+      numeric: true,
+    },
+    {
+      width: 120,
+      label: 'Protein\u00A0(g)',
+      dataKey: 'protein',
+      numeric: true,
+    },
+  ];
+
+  const sample = [
+    ['Frozen yoghurt', 159, 6.0, 24, 4.0],
+    ['Ice cream sandwich', 237, 9.0, 37, 4.3],
+    ['Eclair', 262, 16.0, 24, 6.0],
+    ['Cupcake', 305, 3.7, 67, 4.3],
+    ['Gingerbread', 356, 16.0, 49, 3.9],
+  ];
+  // const rows = Array.from({ length: 200 }, (_, index) => {
+  //   const randomSelection = sample[Math.floor(Math.random() * sample.length)];
+  //   return createData(index, ...randomSelection);
+  // });
 
   return (
     <div>
@@ -63,20 +115,40 @@ function App() {
         <Box id="track-record" my={4}>
           <Typography variant="h4">Track Record</Typography>
           <Typography>Track record content here.</Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
-            pulvinar facilisis justo mollis, auctor consequat urna.
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
-            pulvinar facilisis justo mollis, auctor consequat urna.
-          </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisl eros, 
-            pulvinar facilisis justo mollis, auctor consequat urna.
-          </Typography>
+          <TableRow>
+            
+          {columns.map((column) => (
+          <TableCell
+          key={column.dataKey}
+          variant="head"
+          align={column.numeric || false ? 'right' : 'left'}
+          style={{ width: column.width }}
+          sx={{
+            backgroundColor: 'background.paper',
+          }}
+          >
+          {column.label}
+          </TableCell>
+          ))}
+          </TableRow>
+
+          <Container maxWidth="md">
+          {/* Image Componenet one */}
+        <ImageTextComponent
+        videoSrc="path/to/your/video.mp4"
+        title="Video Title"
+        content="Content for Video"
+        />
+
+        <ImageTextComponent
+        videoSrc="path/to/your/video.mp4"
+        title="Video Title"
+        content="Content for Video"
+        />
+    </Container>
         </Box>
 
+      
         <Box id="investment-strategy" my={4}>
           <Typography variant="h4">Investment strategy</Typography>
           <Typography>Overview content here.</Typography>
