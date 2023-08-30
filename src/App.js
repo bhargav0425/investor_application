@@ -6,6 +6,7 @@ import OverviewSection from './Component/OverviewSection';
 import TrackRecordSection from './Component/TrackRecordSection';
 import ImageTextComponent from './ImageTextComponent';
 import RoundImageTextComponent from './Component/RoundImageTextComponent';
+import Header from './Component/Header'
 
 
 
@@ -64,6 +65,8 @@ function App() {
 
   return (
     <div>
+
+      <Header></Header>
       {/* Banner */}
       <Container maxWidth="md">
         <Typography variant="h2" gutterBottom>
